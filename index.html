@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Eid ul Adha Mubarak</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{
+background:linear-gradient(135deg,#07131f,#0f2027,#1b2c3a);
+color:white;overflow-x:hidden;
+}
+
+/* particles background */
+#tsparticles{
+position:fixed;
+width:100%;
+height:100%;
+z-index:-1;
+}
+
+header{
+width:100%;padding:18px 8%;
+display:flex;justify-content:space-between;
+align-items:center;position:fixed;top:0;left:0;
+z-index:999;background:rgba(0,0,0,.3);
+backdrop-filter:blur(12px);
+}
+
+.logo{display:flex;align-items:center;gap:10px;font-size:24px;font-weight:800;color:#ffd700;}
+nav{display:flex;gap:25px;}
+nav a{color:white;text-decoration:none;}
+
+.btn{
+padding:12px 20px;border:none;border-radius:40px;
+background:#ffd700;font-weight:700;cursor:pointer;
+}
+
+.hero{min-height:100vh;padding:140px 20px;text-align:center;}
+
+.hero h1{font-size:70px;}
+.hero h1 span{color:#ffd700;}
+
+.search-box{display:flex;gap:10px;max-width:700px;margin:30px auto;}
+.search-box input{flex:1;padding:18px;border:none;border-radius:50px;}
+
+.search-box button{
+padding:18px 25px;border:none;border-radius:50px;
+background:#ffd700;font-weight:700;cursor:pointer;
+}
+
+#duaBox{
+margin-top:20px;
+font-size:22px;
+color:#ffd700;
+min-height:30px;
+}
+
+.cards{display:flex;gap:25px;justify-content:center;flex-wrap:wrap;margin-top:70px;}
+
+.card{
+width:320px;background:rgba(255,255,255,0.08);
+border-radius:25px;overflow:hidden;cursor:pointer;
+transition:0.5s;
+}
+
+.card.open{transform:rotateY(360deg);}
+
+.image-placeholder img{width:100%;height:320px;object-fit:cover;}
+
+.card-content{padding:25px;text-align:center;}
+
+a.gift-system{margin-top:80px;}
+
+.gift-system{margin-top:80px;}
+
+.gift-input{display:flex;justify-content:center;gap:10px;margin-top:20px;}
+
+.gift-input input{
+padding:15px;border-radius:25px;border:none;width:250px;
+}
+
+.gift-input button{
+padding:15px 20px;border:none;border-radius:25px;
+background:#ffd700;font-weight:bold;cursor:pointer;
+}
+
+.gift-cards{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:40px;}
+
+.gift-card{width:260px;perspective:1000px;}
+
+.gift-inner{
+width:100%;height:320px;position:relative;
+transition:1s;transform-style:preserve-3d;
+}
+
+.gift-card.flip .gift-inner{transform:rotateY(180deg);}
+
+.gift-front,.gift-back{
+position:absolute;width:100%;height:100%;
+backface-visibility:hidden;border-radius:20px;
+display:flex;justify-content:center;align-items:center;
+flex-direction:column;
+}
+
+gift-front{background:#222;color:#ffd700;}
+.gift-front{background:#222;color:#ffd700;}
+.gift-back{transform:rotateY(180deg);background:#111;}
+.gift-back img{width:100%;height:70%;object-fit:cover;}
+
+/* Mobile responsive */
+@media (max-width: 768px){
+  header{padding:14px 4%;}
+  .logo{font-size:18px;}
+  nav{gap:12px;}
+
+  .hero{padding:110px 14px 60px;}
+  .hero h1{font-size:44px; line-height:1.1;}
+
+  .search-box{flex-direction:column; gap:12px; padding:0 10px;}
+  .search-box input{width:100%;}
+  .search-box button{width:100%;}
+
+  #duaBox{font-size:18px;}
+
+  .card{width:92vw; max-width:360px;}
+  .image-placeholder img{height:260px;}
+
+  .gift-system{margin-top:55px;}
+  .gift-input{flex-direction:column; align-items:stretch; padding:0 10px;}
+  .gift-input input{width:100%;}
+  .gift-input button{width:100%;}
+
+  .gift-card{width:82vw; max-width:340px;}
+  .gift-inner{height:280px;}
+  .gift-back img{height:65%;}
+
+  .cards{margin-top:45px;}
+  .gift-cards{margin-top:25px;}
+}
+
+@media (max-width: 480px){
+  header{padding:12px 3%;}
+  nav{display:none;}
+
+  .btn{padding:10px 14px; border-radius:30px; font-size:14px;}
+
+  .hero{padding-top:95px;}
+  .hero h1{font-size:38px;}
+
+  .image-placeholder img{height:230px;}
+  .gift-inner{height:250px;}
+}
+</style>
+</head>
+
+<body>
+
+<div id="tsparticles"></div>
+
+<header>
+<div class="logo"><i class="fa-solid fa-moon"></i> Eid ul Adha</div>
+
+<nav>
+<a href="#">Home</a>
+<a href="#">Blessings</a>
+<a href="#">Gifts</a>
+</nav>
+
+<button class="btn" onclick="fireworks()">🎆 Fireworks</button>
+</header>
+
+<section class="hero">
+
+<h1>Eid Mubarak <br><span>Celebrate With Joy</span></h1>
+
+<div class="search-box">
+<input id="nameInput" placeholder="Enter Your Name...">
+<button id="searchBtn">Find Blessings</button>
+</div>
+
+<div id="duaBox"></div>
+
+<div class="cards">
+
+<div class="card"><div class="image-placeholder"><img src="img/5.jpg"></div><div class="card-content">Mahekana</div></div>
+<div class="card"><div class="image-placeholder"><img src="img/6.jpg"></div><div class="card-content">Zuraiz</div></div>
+<div class="card"><div class="image-placeholder"><img src="img/55.jpeg"></div><div class="card-content">Ifra Fatima</div></div>
+
+</div>
+
+<div class="gift-system">
+
+<h2 style="text-align:center;margin-top:80px;">🎁 Eid Gift System</h2>
+
+<div class="gift-input">
+<input id="giftNameInput" placeholder="Enter Name">
+<button id="giftSearchBtn">Find Gift</button>
+</div>
+
+<div class="gift-cards">
+
+<div class="gift-card" data-key="s i a z r">
+<div class="gift-inner">
+<div class="gift-front">🎁 Surprise</div>
+<div class="gift-back">
+<img src="img/6.jpg"><h3>Zuraiz</h3>
+</div>
+</div>
+</div>
+
+<div class="gift-card" data-key="m k l n p f j a h e">
+<div class="gift-inner">
+<div class="gift-front">🎁 Surprise</div>
+<div class="gift-back">
+<img src="img/5.jpg"><h3>Mahekana</h3>
+</div>
+</div>
+</div>
+
+<div class="gift-card" data-key="i f a b c d g o u v">
+<div class="gift-inner">
+<div class="gift-front">🎁 Surprise</div>
+<div class="gift-back">
+<img src="img/55.jpeg"><h3>Ifra Fatima</h3>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+</section>
+
+<script>
+
+function fireworks(){
+confetti({particleCount:200,spread:120,origin:{y:0.6}});
+}
+
+const blessings = [
+"🌙 Eid Mubarak! Allah apko khush rakhe",
+"✨ Har din Eid jaisa ho",
+"🤍 Khushiyan aap ke sath rahen",
+
+"🕋 Allah apki har dua qabool kare",
+"🌸 Eid ki khushiyan apke ghar me barish ki tarah barsen",
+"💖 Allah apko sehat aur kamyabi de",
+"🌙 Apki zindagi noor se bhar jaye",
+"✨ Har pal apke liye khushi laye",
+"🤲 Allah apko hamesha muskurata rakhe",
+"🌹 Eid ka din apke liye rehmat laye",
+"💫 Har sapna apka poora ho",
+"🕌 Allah apke ghar me barkat ata kare",
+"🌸 Eid Mubarak! Khush raho hamesha",
+"💝 Apki zindagi pyar aur sukoon se bhari rahe",
+"🌟 Allah apko har gham se bachaye",
+"🤍 Har din apke liye special ho",
+"🌙 Eid ki meethi khushiyan apke naseeb me hon",
+"✨ Dua hai ap hamesha khush rahen",
+"💖 Allah apko lambi umar aur sehat de",
+"🌹 Apki har subah khushiyon wali ho",
+"🕋 Eid Mubarak! Allah apko kamyab kare",
+"💫 Zindagi me sirf khushiyan hi khushiyan hon",
+"🤲 Allah apko har mushkil se bachaye",
+"🌸 Apke chehre ki muskan kabhi kam na ho",
+"🌟 Eid ka chand apke liye barkat laye",
+"💝 Har rishta apka mazboot aur pyara rahe",
+"🌙 Allah apko duniya aur akhirat ki khushiyan de",
+"✨ Apki life hamesha shine karti rahe",
+"🤍 Har din apke liye Eid jaisa ho",
+"🌹 Eid Mubarak! Allah apko apno ka pyar de"
+];
+
+$("#searchBtn").click(function(){
+let name = $("#nameInput").val().trim();
+
+if(name === ""){
+alert("Enter name");
+return;
+}
+
+fireworks();
+
+let msg = blessings[Math.floor(Math.random()*blessings.length)];
+$("#duaBox").text(name + ", " + msg);
+});
+
+$(".card").click(function(){
+$(this).toggleClass("open");
+fireworks();
+});
+
+function getGift(name){
+let scores=[];
+
+$(".gift-card").each(function(){
+let keys=$(this).attr("data-key").split(" ");
+let score=0;
+
+for(let c of name){
+if(keys.includes(c)) score++;
+}
+
+scores.push(score);
+});
+
+let max=Math.max(...scores);
+if(max===0) return -1;
+
+let best=[];
+scores.forEach((s,i)=>{
+if(s===max) best.push(i);
+});
+
+return best[Math.floor(Math.random()*best.length)];
+}
+
+$("#giftSearchBtn").click(function(){
+
+let name=$("#giftNameInput").val().toLowerCase().trim();
+if(name===""){alert("Enter name");return;}
+
+$(".gift-card").removeClass("flip");
+
+let result=getGift(name);
+
+if(result!==-1){
+$(".gift-card").eq(result).addClass("flip");
+fireworks();
+}else{
+alert("No gift matched!");
+}
+
+});
+
+tsParticles.load("tsparticles",{
+particles:{
+number:{value:40},
+color:{value:"#ffd700"},
+shape:{type:"circle"},
+opacity:{value:0.5},
+size:{value:3},
+move:{enable:true,speed:1}
+}
+});
+
+</script>
+
+</body>
+</html>
+
